@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+}
+
+body,
+html,
+#root {
+  background-color: black;
+  overflow: hidden;
+  user-select: none;
+}
+
+.parag {
+  color: white;
+  font-size: 36px;
+  font-weight: 600;
+  top: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: transparent;
+}
