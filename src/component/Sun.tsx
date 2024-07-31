@@ -20,25 +20,28 @@ const Sun: React.FC<SunProps> = ({ textureUrl }) => {
   });
 
   return (
-    <group>
-      {/* Inner Sphere */}
-      <mesh>
-        <sphereGeometry args={[1, 64, 64]} />
-        <meshStandardMaterial map={sunTexture} side={THREE.DoubleSide} />
-      </mesh>
+    <>
+      <pointLight intensity={5} />
+      <group>
+        {/* Inner Sphere */}
+        <mesh>
+          <sphereGeometry args={[1, 64, 64]} />
+          <meshStandardMaterial map={sunTexture} side={THREE.DoubleSide} />
+        </mesh>
 
-      {/* Outer Glowing Sphere */}
-      <mesh ref={sunRef} scale={[1.1, 1.1, 1.1]}>
-        <sphereGeometry args={[1, 64, 64]} />
-        <meshStandardMaterial
-          map={sunTexture}
-          emissive={new THREE.Color("#FDB813")}
-          emissiveIntensity={2}
-          emissiveMap={sunTexture}
-          side={THREE.DoubleSide}
-        />
-      </mesh>
-    </group>
+        {/* Outer Glowing Sphere */}
+        <mesh ref={sunRef} scale={[1.1, 1.1, 1.1]}>
+          <sphereGeometry args={[1, 64, 64]} />
+          <meshStandardMaterial
+            map={sunTexture}
+            emissive={new THREE.Color("#FDB813")}
+            emissiveIntensity={2}
+            emissiveMap={sunTexture}
+            side={THREE.DoubleSide}
+          />
+        </mesh>
+      </group>
+    </>
   );
 };
 export default Sun;
