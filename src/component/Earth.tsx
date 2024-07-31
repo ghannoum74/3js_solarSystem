@@ -9,17 +9,21 @@ interface EarthProps {
 
 const Earth: React.FC<EarthProps> = ({ textureUrl }) => {
   const texture = useLoader(TextureLoader, textureUrl);
-  const earthRef = useRef<THREE.Mesh | null>(null); // Specify type for earthRef
+  const earthRef = useRef<THREE.Mesh | null>(null);
 
-  useFrame(() => {
+  useFrame(({ clock }) => {
+    const elapsedTime = clock.getElapsedTime();
+    const x = 2 * Math.cos(elapsedTime * 0.2);
+    const z = 2 * Math.sin(elapsedTime * 0.2);
+
     if (earthRef.current) {
-      earthRef.current.rotation.y += 0.005;
+      earthRef.current.position.set(x, 0, z);
     }
   });
 
   return (
-    <mesh ref={earthRef}>
-      <sphereGeometry args={[1, 64, 64]} />
+    <mesh ref={earthRef} position={[2, 0, 0]}>
+      <sphereGeometry args={[0.1, 64, 64]} />
       <meshStandardMaterial map={texture} side={THREE.DoubleSide} />
     </mesh>
   );
