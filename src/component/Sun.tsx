@@ -15,23 +15,24 @@ const Sun: React.FC<SunProps> = ({ textureUrl }) => {
   useFrame(() => {
     // Rotate around itself
     if (sunRef.current) {
-      sunRef.current.rotation.y += 0.005;
+      sunRef.current.rotation.y += 0.003;
     }
   });
 
   return (
     <>
-      <pointLight intensity={5} />
+      <pointLight intensity={20} />
+
       <group>
         {/* Inner Sphere */}
         <mesh>
-          <sphereGeometry args={[1, 64, 64]} />
+          <sphereGeometry args={[0.9, 64, 64]} />
           <meshStandardMaterial map={sunTexture} side={THREE.DoubleSide} />
         </mesh>
 
         {/* Outer Glowing Sphere */}
         <mesh ref={sunRef} scale={[1.1, 1.1, 1.1]}>
-          <sphereGeometry args={[1, 64, 64]} />
+          <sphereGeometry args={[0.9, 64, 64]} />
           <meshStandardMaterial
             map={sunTexture}
             emissive={new THREE.Color("#FDB813")}

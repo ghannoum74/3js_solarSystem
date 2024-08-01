@@ -12,9 +12,13 @@ const Earth: React.FC<EarthProps> = ({ textureUrl }) => {
   const earthRef = useRef<THREE.Mesh | null>(null);
 
   useFrame(({ clock }) => {
+    //Rotate around itself
+    if (earthRef.current) {
+      earthRef.current.rotation.y += 0.009;
+    }
     const elapsedTime = clock.getElapsedTime();
-    const x = 2 * Math.cos(elapsedTime * 0.2);
-    const z = 2 * Math.sin(elapsedTime * 0.2);
+    const x = 3 * Math.cos(-elapsedTime * 0.2);
+    const z = 3 * Math.sin(-elapsedTime * 0.2);
 
     if (earthRef.current) {
       earthRef.current.position.set(x, 0, z);
@@ -22,7 +26,7 @@ const Earth: React.FC<EarthProps> = ({ textureUrl }) => {
   });
 
   return (
-    <mesh ref={earthRef} position={[2, 0, 0]}>
+    <mesh ref={earthRef} position={[3, 0, 0]}>
       <sphereGeometry args={[0.1, 64, 64]} />
       <meshStandardMaterial map={texture} side={THREE.DoubleSide} />
     </mesh>
