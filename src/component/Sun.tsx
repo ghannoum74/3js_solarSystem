@@ -31,12 +31,13 @@ const Sun: React.FC<SunProps> = ({ textureUrl }) => {
         </mesh>
 
         {/* Outer Glowing Sphere */}
-        <mesh ref={sunRef} scale={[1.1, 1.1, 1.1]}>
+
+        <mesh ref={sunRef} scale={[1.2, 1.2, 1.2]}>
           <sphereGeometry args={[0.9, 64, 64]} />
           <meshStandardMaterial
             map={sunTexture}
-            emissive={new THREE.Color("#FDB813")}
-            emissiveIntensity={2}
+            emissive={new THREE.Color("#FFFF00")}
+            emissiveIntensity={3}
             emissiveMap={sunTexture}
             side={THREE.DoubleSide}
           />

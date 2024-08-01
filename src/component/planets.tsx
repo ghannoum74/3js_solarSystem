@@ -39,10 +39,12 @@ const Planets: React.FC<props> = ({
     }
   });
   return (
-    <mesh ref={ref} position={position}>
-      <sphereGeometry args={args} />
-      <meshStandardMaterial map={texture} side={side} />
-    </mesh>
+    <group>
+      <mesh ref={ref} position={position}>
+        <sphereGeometry args={args} />
+        <meshStandardMaterial map={texture} side={side} />
+      </mesh>
+    </group>
   );
 };
 
