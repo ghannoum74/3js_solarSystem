@@ -39,7 +39,7 @@ const Sun: React.FC<SunProps> = ({ textureUrl }) => {
             emissive={new THREE.Color("#FFFF00")}
             emissiveIntensity={3}
             emissiveMap={sunTexture}
-            side={THREE.DoubleSide}
+            // side={THREE.DoubleSide}
           />
         </mesh>
       </group>

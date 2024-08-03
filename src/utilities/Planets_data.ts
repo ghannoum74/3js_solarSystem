@@ -2,7 +2,7 @@ import * as THREE from "three";
 const planets_data = [
   {
     id: 1,
-    textureUrl: "mercury_albedo_texture_map_16k_by_fargetanik_ddgq5sm.jpg",
+    textureUrl: "mercury_albedo_texture_map_16k_by_fargetanik_ddgq5sm-min.jpg",
     position: new THREE.Vector3(1.5, 0, 0),
     args: [0.08, 64, 64] as [number, number, number],
     snipingSpeed: 0.06,
@@ -12,17 +12,18 @@ const planets_data = [
   },
   {
     id: 2,
-    textureUrl: "fictional_gas_giant__2_texture_map_by_oleg_pluton_ddepw99.png",
+    textureUrl:
+      "fictional_gas_giant__2_texture_map_by_oleg_pluton_ddepw99-min.png",
     position: new THREE.Vector3(2, 0, 0),
     args: [0.09, 64, 64] as [number, number, number],
     snipingSpeed: 0.03,
     rotationSpeed: -0.3,
-    distanceFromSun: 2,
+    distanceFromSun: 11,
     side: THREE.DoubleSide,
   },
   {
     id: 3,
-    textureUrl: "moon_albedo_texture_map_16k_by_fargetanik_ddjafyf.jpg",
+    textureUrl: "moon_albedo_texture_map_16k_by_fargetanik_ddjafyf-min.jpg",
     position: new THREE.Vector3(2.5, 0, 0),
     args: [0.07, 64, 64] as [number, number, number],
     snipingSpeed: 0.005,
@@ -32,7 +33,7 @@ const planets_data = [
   },
   {
     id: 4,
-    textureUrl: "earth_color_10K.png",
+    textureUrl: "earth_color_10K-min.png",
     position: new THREE.Vector3(3.5, 0, 0),
     args: [0.1, 64, 64] as [number, number, number],
     snipingSpeed: 0.009,
@@ -43,7 +44,7 @@ const planets_data = [
   {
     id: 5,
     textureUrl:
-      "mars_texture_map_16k___mars_global_surveyor_by_fargetanik_dbpke7f.jpg",
+      "mars_texture_map_16k___mars_global_surveyor_by_fargetanik_dbpke7f-min.jpg",
     position: new THREE.Vector3(4, 0, 0),
     args: [0.09, 64, 64] as [number, number, number],
     snipingSpeed: 0.03,
@@ -54,7 +55,7 @@ const planets_data = [
   {
     id: 6,
     textureUrl:
-      "jupiter_hubble__december_2016__by_mrspace43_celestia_dfjnznc.png",
+      "jupiter_hubble__december_2016__by_mrspace43_celestia_dfjnznc-min.png",
     position: new THREE.Vector3(5, 0, 0),
     args: [0.7, 64, 64] as [number, number, number],
     snipingSpeed: 0.004,
@@ -64,7 +65,7 @@ const planets_data = [
   },
   {
     id: 7,
-    textureUrl: "saturn_texture_map_by_neptuneproproduction_dcaift0.jpg",
+    textureUrl: "saturn_texture_map_by_neptuneproproduction_dcaift0-min.jpg",
     position: new THREE.Vector3(7.5, 0, 0),
     args: [0.5, 64, 64] as [number, number, number],
     snipingSpeed: 0.0007,
@@ -75,7 +76,7 @@ const planets_data = [
 
   {
     id: 8,
-    textureUrl: "2k_uranus.jpg",
+    textureUrl: "2k_uranus-min.jpg",
     position: new THREE.Vector3(8.5, 0, 0),
     args: [0.1, 64, 64] as [number, number, number],
     snipingSpeed: 0.0002,
@@ -85,7 +86,7 @@ const planets_data = [
   },
   {
     id: 9,
-    textureUrl: "2k_neptune.jpg",
+    textureUrl: "2k_neptune-min.jpg",
     position: new THREE.Vector3(10, 0, 0),
     args: [0.1, 64, 64] as [number, number, number],
     snipingSpeed: 0.0002,
