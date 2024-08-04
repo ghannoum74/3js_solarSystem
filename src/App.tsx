@@ -108,6 +108,7 @@ const App = () => {
                   rotationSpeed={item.rotationSpeed}
                   distanceFromSun={item.distanceFromSun}
                   side={item.side}
+                  name={item.name}
                 />
 
                 <mesh position={[0, 0, 0]} rotation={[1.57, 0, 0]}>
