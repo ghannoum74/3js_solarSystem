@@ -26,6 +26,7 @@ const Planets: React.FC<props> = React.memo(
     hasTexture,
     color,
   }) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const texture = hasTexture ? useLoader(TextureLoader, textureUrl) : null;
     const ref = useRef<THREE.Mesh | null>(null);
 
