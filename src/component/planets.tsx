@@ -10,8 +10,9 @@ interface props {
   snipingSpeed: number;
   rotationSpeed: number;
   distanceFromSun: number;
-  side: THREE.Side;
   name: string;
+  hasTexture: boolean;
+  color: string;
 }
 const Planets: React.FC<props> = React.memo(
   ({
@@ -21,10 +22,11 @@ const Planets: React.FC<props> = React.memo(
     snipingSpeed,
     rotationSpeed,
     distanceFromSun,
-    side,
     name,
+    hasTexture,
+    color,
   }) => {
-    const texture = useLoader(TextureLoader, textureUrl);
+    const texture = hasTexture ? useLoader(TextureLoader, textureUrl) : null;
     const ref = useRef<THREE.Mesh | null>(null);
 
     useFrame(({ clock }) => {
@@ -37,7 +39,7 @@ const Planets: React.FC<props> = React.memo(
       // rotate around the sun
       const elapsedTime = clock.getElapsedTime();
       const z = distanceFromSun * Math.cos(elapsedTime * rotationSpeed);
-      const x = distanceFromSun * Math.sin(elapsedTime * rotationSpeed); // i used - to rotate countClock
+      const x = distanceFromSun * Math.sin(elapsedTime * rotationSpeed);
 
       if (ref.current) {
         ref.current.position.set(x, 0, z);
@@ -46,7 +48,11 @@ const Planets: React.FC<props> = React.memo(
     return (
       <mesh ref={ref} position={position}>
         <sphereGeometry args={args} />
-        <meshStandardMaterial map={texture} side={side} />
+        {hasTexture ? (
+          <meshStandardMaterial map={texture} />
+        ) : (
+          <meshStandardMaterial color={color} />
+        )}
         <Html position={[0, 0.1, 0]} center>
           <div
             style={{

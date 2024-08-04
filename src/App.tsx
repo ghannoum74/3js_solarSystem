@@ -107,8 +107,9 @@ const App = () => {
                   snipingSpeed={item.snipingSpeed}
                   rotationSpeed={item.rotationSpeed}
                   distanceFromSun={item.distanceFromSun}
-                  side={item.side}
                   name={item.name}
+                  hasTexture={item.hasTexture}
+                  color={item.color}
                 />
 
                 <mesh position={[0, 0, 0]} rotation={[1.57, 0, 0]}>
