@@ -14,8 +14,9 @@ interface props {
   hasTexture: boolean;
   color: string;
 }
-const Planets: React.FC<props> = React.memo(
-  ({
+const Planets = React.memo(
+  React.forwardRef<THREE.Mesh, props>(function Planets(
+    {
     textureUrl,
     position,
     args,
@@ -25,16 +26,27 @@ const Planets: React.FC<props> = React.memo(
     name,
     hasTexture,
     color,
-  }) => {
+    },
+    forwardedRef
+  ) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const texture = hasTexture ? useLoader(TextureLoader, textureUrl) : null;
-    const ref = useRef<THREE.Mesh | null>(null);
+    const localRef = useRef<THREE.Mesh | null>(null);
+
+    const setRef = (mesh: THREE.Mesh | null) => {
+      localRef.current = mesh;
+      if (typeof forwardedRef === "function") {
+        forwardedRef(mesh);
+      } else if (forwardedRef) {
+        forwardedRef.current = mesh;
+      }
+    };
 
     useFrame(({ clock }) => {
       // rotate around iteself
 
-      if (ref.current) {
-        ref.current.rotation.y += snipingSpeed;
+      if (localRef.current) {
+        localRef.current.rotation.y += snipingSpeed;
       }
 
       // rotate around the sun
@@ -42,12 +54,12 @@ const Planets: React.FC<props> = React.memo(
       const z = distanceFromSun * Math.cos(elapsedTime * rotationSpeed);
       const x = distanceFromSun * Math.sin(elapsedTime * rotationSpeed);
 
-      if (ref.current) {
-        ref.current.position.set(x, 0, z);
+      if (localRef.current) {
+        localRef.current.position.set(x, 0, z);
       }
     });
     return (
-      <mesh ref={ref} position={position}>
+      <mesh ref={setRef} position={position}>
         <sphereGeometry args={args} />
         {hasTexture ? (
           <meshStandardMaterial map={texture} />
@@ -67,7 +79,7 @@ const Planets: React.FC<props> = React.memo(
         </Html>
       </mesh>
     );
-  }
+  })
 );
 
 export default Planets;

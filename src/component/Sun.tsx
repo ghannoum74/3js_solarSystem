@@ -9,7 +9,10 @@ interface SunProps {
   textureUrl: string;
 }
 
-const Sun: React.FC<SunProps> = ({ textureUrl }) => {
+const Sun = React.forwardRef<THREE.Mesh, SunProps>(function Sun(
+  { textureUrl },
+  forwardedRef
+) {
   const sunTexture = useLoader(TextureLoader, textureUrl);
   const sunRef = useRef<THREE.Mesh | null>(null);
 
@@ -33,7 +36,17 @@ const Sun: React.FC<SunProps> = ({ textureUrl }) => {
 
         {/* Outer Glowing Sphere */}
 
-        <mesh ref={sunRef} scale={[1.2, 1.2, 1.2]}>
+        <mesh
+          ref={(mesh) => {
+            sunRef.current = mesh;
+            if (typeof forwardedRef === "function") {
+              forwardedRef(mesh);
+            } else if (forwardedRef) {
+              forwardedRef.current = mesh;
+            }
+          }}
+          scale={[1.2, 1.2, 1.2]}
+        >
           <sphereGeometry args={[0.9, 32, 32]} />
           <meshStandardMaterial
             map={sunTexture}
@@ -57,5 +70,5 @@ const Sun: React.FC<SunProps> = ({ textureUrl }) => {
       </group>
     </>
   );
-};
+});
 export default Sun;
