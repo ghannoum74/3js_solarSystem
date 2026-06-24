@@ -10,6 +10,7 @@ import { Bloom, EffectComposer } from "@react-three/postprocessing";
 import Planets_data from "./utilities/Planets_data.js";
 import Planets from "./component/planets.js";
 import Navbar from "./component/Navbar.js";
+import BodyInfoPanel from "./component/BodyInfoPanel.js";
 import { Suspense, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import Loading from "./utilities/Loading.js";
@@ -139,11 +140,30 @@ const App = () => {
   const [selectedBody, setSelectedBody] = useState<string | null>(null);
   const bodyRefs = useRef<Record<string, Mesh | null>>({});
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setSelectedBody(null);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   return (
     <div>
       <Navbar selectedBody={selectedBody} onSelectBody={setSelectedBody} />
+      <BodyInfoPanel
+        selectedBody={selectedBody}
+        onFreeView={() => setSelectedBody(null)}
+      />
       <Suspense fallback={<Loading />}>
-        <Canvas>
+        <Canvas
+          onPointerMissed={() => {
+            document.body.style.cursor = "default";
+          }}
+        >
           <CameraZoomPanRotate />
           <CameraFocus selectedBody={selectedBody} bodyRefs={bodyRefs} />
 
@@ -153,6 +173,8 @@ const App = () => {
                 bodyRefs.current.Sun = mesh;
               }}
               textureUrl="euvi_aia304_2012_carrington-min.png"
+              isSelected={selectedBody === "Sun"}
+              onSelect={setSelectedBody}
             />
             {Planets_data.map((item) => (
               <group key={item.id}>
@@ -169,6 +191,7 @@ const App = () => {
                   name={item.name}
                   hasTexture={item.hasTexture}
                   color={item.color}
+                  onSelect={setSelectedBody}
                 />
 
                 <mesh position={[0, 0, 0]} rotation={[1.57, 0, 0]}>

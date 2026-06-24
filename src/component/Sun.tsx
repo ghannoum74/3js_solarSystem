@@ -7,10 +7,12 @@ import { Html } from "@react-three/drei";
 // Sun Component
 interface SunProps {
   textureUrl: string;
+  isSelected: boolean;
+  onSelect: (name: string) => void;
 }
 
 const Sun = React.forwardRef<THREE.Mesh, SunProps>(function Sun(
-  { textureUrl },
+  { textureUrl, isSelected, onSelect },
   forwardedRef
 ) {
   const sunTexture = useLoader(TextureLoader, textureUrl);
@@ -46,12 +48,23 @@ const Sun = React.forwardRef<THREE.Mesh, SunProps>(function Sun(
             }
           }}
           scale={[1.2, 1.2, 1.2]}
+          onClick={(event) => {
+            event.stopPropagation();
+            onSelect("Sun");
+          }}
+          onPointerOver={(event) => {
+            event.stopPropagation();
+            document.body.style.cursor = "pointer";
+          }}
+          onPointerOut={() => {
+            document.body.style.cursor = "default";
+          }}
         >
           <sphereGeometry args={[0.9, 32, 32]} />
           <meshStandardMaterial
             map={sunTexture}
             emissive={new THREE.Color("#FFFF00")}
-            emissiveIntensity={3}
+            emissiveIntensity={isSelected ? 4.5 : 3}
             emissiveMap={sunTexture}
             // side={THREE.DoubleSide}
           />
@@ -61,6 +74,7 @@ const Sun = React.forwardRef<THREE.Mesh, SunProps>(function Sun(
                 color: "#9e9e9e",
                 fontSize: "10px",
                 textAlign: "center",
+                pointerEvents: "none",
               }}
             >
               Sun
