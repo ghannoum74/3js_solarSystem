@@ -22,7 +22,7 @@ const Navbar = ({ selectedBody, onSelectBody }: NavbarProps) => {
   return (
     <nav className="navbar" aria-label="Solar system navigation">
       <div className="container-nav">
-        <div className="logo">GHANNOUM Solaire System</div>
+        <div className="logo">GHANNOUM Solar System</div>
         <ul className="menu">
           {bodies.map(([name, color]) => (
             <li key={name}>

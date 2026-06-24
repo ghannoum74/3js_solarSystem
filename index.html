@@ -2,12 +2,90 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Solar System</title>
+    <meta name="theme-color" content="#030712" />
+    <meta name="color-scheme" content="dark" />
+
+    <title>Interactive 3D Solar System Explorer</title>
+    <meta
+      name="description"
+      content="Explore the Sun, planets, Moon, and Pluto in an interactive 3D solar system. Select each world to discover its size, gravity, temperature, orbit, and distance."
+    />
+    <meta
+      name="keywords"
+      content="3D solar system, interactive planets, solar system explorer, astronomy, planets, space education, Three.js"
+    />
+    <meta name="author" content="Ghannoum" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="googlebot" content="index, follow, max-image-preview:large" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="3D Solar System Explorer" />
+    <meta property="og:title" content="Interactive 3D Solar System Explorer" />
+    <meta
+      property="og:description"
+      content="Travel through an interactive 3D solar system and learn key facts about the Sun, planets, Moon, and Pluto."
+    />
+    <meta property="og:image" content="/solar-system-preview.svg" />
+    <meta
+      property="og:image:alt"
+      content="Illustrated planets orbiting the Sun in a 3D solar system explorer"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Interactive 3D Solar System Explorer" />
+    <meta
+      name="twitter:description"
+      content="Explore the solar system in 3D and discover facts about every world."
+    />
+    <meta name="twitter:image" content="/solar-system-preview.svg" />
+    <meta
+      name="twitter:image:alt"
+      content="Illustrated planets orbiting the Sun in a 3D solar system explorer"
+    />
+
+    <link rel="icon" type="image/svg+xml" href="/solar-system-icon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Interactive 3D Solar System Explorer",
+        "description": "An interactive 3D educational model of the solar system with facts about the Sun, planets, Moon, and Pluto.",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Any",
+        "isAccessibleForFree": true,
+        "inLanguage": "en",
+        "author": {
+          "@type": "Person",
+          "name": "Ghannoum"
+        },
+        "keywords": [
+          "solar system",
+          "astronomy",
+          "planets",
+          "3D education",
+          "space"
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <main>
+        <h1>Interactive 3D Solar System Explorer</h1>
+        <p>
+          Explore the Sun, Mercury, Earth, the Moon, Mars, Jupiter, Saturn,
+          Uranus, Neptune, and Pluto. JavaScript is required to use the
+          interactive 3D experience.
+        </p>
+      </main>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -16,6 +16,7 @@ import gsap from "gsap";
 import Loading from "./utilities/Loading.js";
 import { BufferGeometry, Material, Mesh, Points, Vector3 } from "three";
 import type { CameraControls as CameraControlsType } from "@react-three/drei";
+import Seo from "./component/Seo.js";
 
 const CameraZoomPanRotate = () => {
   const { camera } = useThree();
@@ -153,6 +154,15 @@ const App = () => {
 
   return (
     <div>
+      <Seo selectedBody={selectedBody} />
+      <main className="sr-only">
+        <h1>Interactive 3D Solar System Explorer</h1>
+        <p>
+          Explore a 3D model of the solar system. Select the Sun, planets, Moon,
+          or Pluto to learn about each body's diameter, gravity, temperature,
+          orbital period, and distance from the Sun.
+        </p>
+      </main>
       <Navbar selectedBody={selectedBody} onSelectBody={setSelectedBody} />
       <BodyInfoPanel
         selectedBody={selectedBody}

@@ -1,0 +1,18 @@
+{
+  "name": "Interactive 3D Solar System Explorer",
+  "short_name": "3D Solar System",
+  "description": "Explore the solar system and learn essential facts about each world.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#030712",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/solar-system-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
