@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#030712" />
     <meta name="color-scheme" content="dark" />
 
-    <title>Interactive 3D Solar System Explorer</title>
+    <title>3D Solar System Explorer: Sun, Planets &amp; Moon</title>
     <meta
       name="description"
       content="Explore the Sun, planets, Moon, and Pluto in an interactive 3D solar system. Select each world to discover its size, gravity, temperature, orbit, and distance."
@@ -21,7 +21,10 @@
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="3D Solar System Explorer" />
-    <meta property="og:title" content="Interactive 3D Solar System Explorer" />
+    <meta
+      property="og:title"
+      content="3D Solar System Explorer: Sun, Planets &amp; Moon"
+    />
     <meta
       property="og:description"
       content="Travel through an interactive 3D solar system and learn key facts about the Sun, planets, Moon, and Pluto."
@@ -36,7 +39,10 @@
     <meta property="og:locale" content="en_US" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Interactive 3D Solar System Explorer" />
+    <meta
+      name="twitter:title"
+      content="3D Solar System Explorer: Sun, Planets &amp; Moon"
+    />
     <meta
       name="twitter:description"
       content="Explore the solar system in 3D and discover facts about every world."
@@ -54,7 +60,7 @@
       {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
-        "name": "Interactive 3D Solar System Explorer",
+        "name": "3D Solar System Explorer: Sun, Planets & Moon",
         "description": "An interactive 3D educational model of the solar system with facts about the Sun, planets, Moon, and Pluto.",
         "applicationCategory": "EducationalApplication",
         "operatingSystem": "Any",
@@ -75,16 +81,29 @@
     </script>
   </head>
   <body>
-    <div id="root"></div>
-    <noscript>
+    <div id="root">
       <main>
-        <h1>Interactive 3D Solar System Explorer</h1>
+        <h1>3D Solar System Explorer: Sun, Planets &amp; Moon</h1>
         <p>
-          Explore the Sun, Mercury, Earth, the Moon, Mars, Jupiter, Saturn,
-          Uranus, Neptune, and Pluto. JavaScript is required to use the
-          interactive 3D experience.
+          Explore the solar system in 3D and select a world to discover its
+          diameter, gravity, temperature, orbital period, and distance.
         </p>
+        <nav aria-label="Explore celestial bodies">
+          <a href="#sun">Sun</a>
+          <a href="#mercury">Mercury</a>
+          <a href="#moon">Moon</a>
+          <a href="#earth">Earth</a>
+          <a href="#mars">Mars</a>
+          <a href="#jupiter">Jupiter</a>
+          <a href="#saturn">Saturn</a>
+          <a href="#uranus">Uranus</a>
+          <a href="#neptune">Neptune</a>
+          <a href="#pluto">Pluto</a>
+        </nav>
       </main>
+    </div>
+    <noscript>
+      JavaScript is required to use the interactive 3D solar system.
     </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>

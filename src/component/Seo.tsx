@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import bodyInfo from "../utilities/Body_info.js";
 
-const defaultTitle = "Interactive 3D Solar System Explorer";
+const defaultTitle = "3D Solar System Explorer: Sun, Planets & Moon";
 const defaultDescription =
   "Explore the Sun, planets, Moon, and Pluto in an interactive 3D solar system. Discover each world's size, gravity, temperature, orbit, and distance.";
 
@@ -19,7 +19,7 @@ const Seo = ({ selectedBody }: SeoProps) => {
   useEffect(() => {
     const info = selectedBody ? bodyInfo[selectedBody] : undefined;
     const title = info
-      ? `${info.name} Facts | Interactive 3D Solar System`
+      ? `${info.name} Facts | 3D Solar System Explorer`
       : defaultTitle;
     const description = info
       ? `${info.description} Explore ${info.name} in an interactive 3D solar system and learn its essential facts.`

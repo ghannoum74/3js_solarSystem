@@ -6,16 +6,16 @@ interface NavbarProps {
 }
 
 const bodies = [
-  ["Mercury", "var(--Mercury)"],
-  ["Moon", "var(--Moon)"],
-  ["Earth", "var(--Earth)"],
-  ["Mars", "var(--Mars)"],
-  ["Jupiter", "var(--Jupiter)"],
-  ["Saturn", "var(--Saturn)"],
-  ["Uranus", "var(--Uranus)"],
-  ["Neptune", "var(--Neptune)"],
-  ["Pluton", "var(--Pluto)"],
-  ["Sun", "#ffd54f"],
+  ["Mercury", "mercury", "var(--Mercury)"],
+  ["Moon", "moon", "var(--Moon)"],
+  ["Earth", "earth", "var(--Earth)"],
+  ["Mars", "mars", "var(--Mars)"],
+  ["Jupiter", "jupiter", "var(--Jupiter)"],
+  ["Saturn", "saturn", "var(--Saturn)"],
+  ["Uranus", "uranus", "var(--Uranus)"],
+  ["Neptune", "neptune", "var(--Neptune)"],
+  ["Pluton", "pluto", "var(--Pluto)"],
+  ["Sun", "sun", "#ffd54f"],
 ] as const;
 
 const Navbar = ({ selectedBody, onSelectBody }: NavbarProps) => {
@@ -24,17 +24,17 @@ const Navbar = ({ selectedBody, onSelectBody }: NavbarProps) => {
       <div className="container-nav">
         <div className="logo">GHANNOUM Solar System</div>
         <ul className="menu">
-          {bodies.map(([name, color]) => (
+          {bodies.map(([name, slug, color]) => (
             <li key={name}>
-              <button
-                type="button"
+              <a
+                href={`#${slug}`}
                 className={selectedBody === name ? "active" : ""}
                 style={{ "--planet-color": color } as CSSProperties}
                 onClick={() => onSelectBody(name)}
-                aria-pressed={selectedBody === name}
+                aria-current={selectedBody === name ? "page" : undefined}
               >
-                {name}
-              </button>
+                {name === "Pluton" ? "Pluto" : name}
+              </a>
             </li>
           ))}
         </ul>

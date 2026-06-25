@@ -11,12 +11,23 @@ import Planets_data from "./utilities/Planets_data.js";
 import Planets from "./component/planets.js";
 import Navbar from "./component/Navbar.js";
 import BodyInfoPanel from "./component/BodyInfoPanel.js";
-import { Suspense, useEffect, useRef, useState } from "react";
+import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import Loading from "./utilities/Loading.js";
 import { BufferGeometry, Material, Mesh, Points, Vector3 } from "three";
 import type { CameraControls as CameraControlsType } from "@react-three/drei";
 import Seo from "./component/Seo.js";
+
+const bodyFromHash = () => {
+  const hash = window.location.hash.slice(1).toLowerCase();
+  if (hash === "pluto") return "Pluton";
+
+  return (
+    ["Sun", ...Planets_data.map((planet) => planet.name)].find(
+      (name) => name.toLowerCase() === hash
+    ) ?? null
+  );
+};
 
 const CameraZoomPanRotate = () => {
   const { camera } = useThree();
@@ -138,35 +149,56 @@ const CameraFocus = ({ selectedBody, bodyRefs }: CameraFocusProps) => {
 };
 
 const App = () => {
-  const [selectedBody, setSelectedBody] = useState<string | null>(null);
+  const [selectedBody, setSelectedBody] = useState<string | null>(bodyFromHash);
   const bodyRefs = useRef<Record<string, Mesh | null>>({});
+
+  const selectBody = useCallback((name: string) => {
+    setSelectedBody(name);
+    const slug = name === "Pluton" ? "pluto" : name.toLowerCase();
+    if (window.location.hash !== `#${slug}`) {
+      window.history.pushState(null, "", `#${slug}`);
+    }
+  }, []);
+
+  const clearSelection = useCallback(() => {
+    setSelectedBody(null);
+    window.history.pushState(
+      null,
+      "",
+      `${window.location.pathname}${window.location.search}`
+    );
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        setSelectedBody(null);
+        clearSelection();
       }
     };
+    const handleHashChange = () => setSelectedBody(bodyFromHash());
 
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+    window.addEventListener("hashchange", handleHashChange);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("hashchange", handleHashChange);
+    };
+  }, [clearSelection]);
 
   return (
     <div>
       <Seo selectedBody={selectedBody} />
-      <main className="sr-only">
-        <h1>Interactive 3D Solar System Explorer</h1>
+      <main className="page-intro">
+        <p className="page-intro__eyebrow">Interactive astronomy experience</p>
+        <h1>3D Solar System Explorer: Sun, Planets &amp; Moon</h1>
         <p>
-          Explore a 3D model of the solar system. Select the Sun, planets, Moon,
-          or Pluto to learn about each body's diameter, gravity, temperature,
-          orbital period, and distance from the Sun.
+          Select a world to explore its orbit and essential facts.
         </p>
       </main>
-      <Navbar selectedBody={selectedBody} onSelectBody={setSelectedBody} />
+      <Navbar selectedBody={selectedBody} onSelectBody={selectBody} />
       <BodyInfoPanel
         selectedBody={selectedBody}
-        onFreeView={() => setSelectedBody(null)}
+        onFreeView={clearSelection}
       />
       <Suspense fallback={<Loading />}>
         <Canvas
@@ -184,7 +216,7 @@ const App = () => {
               }}
               textureUrl="euvi_aia304_2012_carrington-min.png"
               isSelected={selectedBody === "Sun"}
-              onSelect={setSelectedBody}
+              onSelect={selectBody}
             />
             {Planets_data.map((item) => (
               <group key={item.id}>
@@ -201,7 +233,7 @@ const App = () => {
                   name={item.name}
                   hasTexture={item.hasTexture}
                   color={item.color}
-                  onSelect={setSelectedBody}
+                  onSelect={selectBody}
                 />
 
                 <mesh position={[0, 0, 0]} rotation={[1.57, 0, 0]}>
