@@ -1,10 +1,6 @@
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import "./css/App.css";
-import {
-  CameraControls,
-  PerspectiveCamera,
-  Stars,
-} from "@react-three/drei";
+import { CameraControls, PerspectiveCamera, Stars } from "@react-three/drei";
 import Sun from "./component/Sun.js";
 import { Bloom, EffectComposer } from "@react-three/postprocessing";
 import Planets_data from "./utilities/Planets_data.js";
@@ -24,7 +20,7 @@ const bodyFromHash = () => {
 
   return (
     ["Sun", ...Planets_data.map((planet) => planet.name)].find(
-      (name) => name.toLowerCase() === hash
+      (name) => name.toLowerCase() === hash,
     ) ?? null
   );
 };
@@ -43,7 +39,7 @@ const CameraZoomPanRotate = () => {
         fov: 25,
         duration: 2,
         onUpdate: () => camera.updateProjectionMatrix(),
-      }
+      },
     );
 
     // Pan across the scene
@@ -121,8 +117,8 @@ const CameraFocus = ({ selectedBody, bodyRefs }: CameraFocusProps) => {
     const radius =
       selectedBody === "Sun"
         ? 0.9
-        : Planets_data.find((planet) => planet.name === selectedBody)?.args[0] ??
-          0.1;
+        : (Planets_data.find((planet) => planet.name === selectedBody)
+            ?.args[0] ?? 0.1);
     const distance = Math.max(radius * 7, 1.5);
 
     controlsRef.current.setLookAt(
@@ -132,7 +128,7 @@ const CameraFocus = ({ selectedBody, bodyRefs }: CameraFocusProps) => {
       target.current.x,
       target.current.y,
       target.current.z,
-      true
+      true,
     );
   });
 
@@ -165,7 +161,7 @@ const App = () => {
     window.history.pushState(
       null,
       "",
-      `${window.location.pathname}${window.location.search}`
+      `${window.location.pathname}${window.location.search}`,
     );
   }, []);
 
@@ -188,18 +184,9 @@ const App = () => {
   return (
     <div>
       <Seo selectedBody={selectedBody} />
-      <main className="page-intro">
-        <p className="page-intro__eyebrow">Interactive astronomy experience</p>
-        <h1>3D Solar System Explorer: Sun, Planets &amp; Moon</h1>
-        <p>
-          Select a world to explore its orbit and essential facts.
-        </p>
-      </main>
+
       <Navbar selectedBody={selectedBody} onSelectBody={selectBody} />
-      <BodyInfoPanel
-        selectedBody={selectedBody}
-        onFreeView={clearSelection}
-      />
+      <BodyInfoPanel selectedBody={selectedBody} onFreeView={clearSelection} />
       <Suspense fallback={<Loading />}>
         <Canvas
           onPointerMissed={() => {
