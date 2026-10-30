@@ -38,7 +38,7 @@ const planets_data = [
   },
   {
     id: 4,
-    textureUrl: "earth_color_10K-min.png",
+    textureUrl: "earth_color_10K-min.webp",
     position: new THREE.Vector3(3.5, 0, 0),
     args: [0.1, 16, 16] as [number, number, number],
     snipingSpeed: 0.009,
@@ -63,7 +63,7 @@ const planets_data = [
   {
     id: 6,
     textureUrl:
-      "jupiter_hubble__december_2016__by_mrspace43_celestia_dfjnznc-min.png",
+      "jupiter_hubble__december_2016__by_mrspace43_celestia_dfjnznc-min.webp",
     position: new THREE.Vector3(5, 0, 0),
     args: [0.7, 32, 32] as [number, number, number],
     snipingSpeed: 0.004,
@@ -75,7 +75,7 @@ const planets_data = [
   },
   {
     id: 7,
-    textureUrl: "saturn_texture_map_by_neptuneproproduction_dcaift0-min.jpg",
+    textureUrl: "saturn_texture_map_by_neptuneproproduction_dcaift0-min.webp",
     position: new THREE.Vector3(7.5, 0, 0),
     args: [0.5, 16, 16] as [number, number, number],
     snipingSpeed: 0.0007,

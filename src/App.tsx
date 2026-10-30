@@ -10,11 +10,12 @@ import Sun from "./component/Sun.js";
 import { Bloom, EffectComposer } from "@react-three/postprocessing";
 import Planets_data from "./utilities/Planets_data.js";
 import Planets from "./component/planets.js";
-import Navbar from "./component/Navbar.js";
+// import Navbar from "./component/Navbar.js";
 import { Suspense, useEffect, useRef } from "react";
 import gsap from "gsap";
 import Loading from "./utilities/Loading.js";
 import { BufferGeometry, Material, Points } from "three";
+import Navbar from "./component/Navbar.js";
 
 const CameraZoomPanRotate = () => {
   const { camera } = useThree();
@@ -30,7 +31,7 @@ const CameraZoomPanRotate = () => {
         fov: 25,
         duration: 2,
         onUpdate: () => camera.updateProjectionMatrix(),
-      }
+      },
     );
 
     // Pan across the scene
@@ -97,7 +98,7 @@ const App = () => {
           />
 
           <group rotation={[0, 0, 0.3]}>
-            <Sun textureUrl="euvi_aia304_2012_carrington-min.png" />
+            <Sun textureUrl="euvi_aia304_2012_carrington-min.webp" />
             {Planets_data.map((item) => (
               <group key={item.id}>
                 <Planets
