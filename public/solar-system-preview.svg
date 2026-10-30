@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Interactive 3D Solar System Explorer</title>
+  <desc id="desc">A bright Sun surrounded by colorful planets and orbital paths in deep space.</desc>
+  <defs>
+    <radialGradient id="background">
+      <stop stop-color="#172554"/>
+      <stop offset=".5" stop-color="#070d20"/>
+      <stop offset="1" stop-color="#02030a"/>
+    </radialGradient>
+    <radialGradient id="sun">
+      <stop stop-color="#fffbd1"/>
+      <stop offset=".35" stop-color="#fde047"/>
+      <stop offset=".72" stop-color="#f59e0b"/>
+      <stop offset="1" stop-color="#ea580c"/>
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="18" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1200" height="630" fill="url(#background)"/>
+  <g fill="#fff" opacity=".8">
+    <circle cx="74" cy="86" r="2"/><circle cx="164" cy="190" r="1.5"/><circle cx="267" cy="66" r="1"/>
+    <circle cx="387" cy="153" r="2"/><circle cx="523" cy="59" r="1.5"/><circle cx="704" cy="128" r="1"/>
+    <circle cx="838" cy="51" r="2"/><circle cx="1015" cy="124" r="1.5"/><circle cx="1126" cy="71" r="1"/>
+    <circle cx="91" cy="524" r="1.5"/><circle cx="226" cy="445" r="1"/><circle cx="1094" cy="513" r="2"/>
+  </g>
+  <g transform="translate(815 315) rotate(-13)" fill="none" stroke="#64748b" opacity=".42">
+    <ellipse rx="285" ry="92"/><ellipse rx="225" ry="72"/><ellipse rx="168" ry="52"/><ellipse rx="112" ry="34"/>
+  </g>
+  <circle cx="815" cy="315" r="65" fill="#f59e0b" opacity=".25" filter="url(#glow)"/>
+  <circle cx="815" cy="315" r="54" fill="url(#sun)" filter="url(#glow)"/>
+  <circle cx="927" cy="285" r="13" fill="#b7a79b"/>
+  <circle cx="966" cy="382" r="20" fill="#d97745"/>
+  <circle cx="676" cy="277" r="25" fill="#3b82f6"/>
+  <path d="M659 273c10-12 24-13 39-3-8 8-17 11-28 8z" fill="#5eead4" opacity=".9"/>
+  <circle cx="1081" cy="236" r="38" fill="#d6a777"/>
+  <path d="M1049 228h64M1047 240h67M1054 252h53" stroke="#8f694d" stroke-width="5" opacity=".7"/>
+  <circle cx="559" cy="364" r="29" fill="#e8c675"/>
+  <ellipse cx="559" cy="364" rx="57" ry="12" fill="none" stroke="#f3df9b" stroke-width="8" transform="rotate(-12 559 364)"/>
+  <circle cx="503" cy="251" r="15" fill="#83d4df"/>
+  <circle cx="1106" cy="402" r="18" fill="#3568cb"/>
+  <g fill="#f8fafc">
+    <text x="84" y="230" font-family="Inter,Arial,sans-serif" font-size="28" font-weight="700" letter-spacing="4" fill="#93c5fd">EXPLORE SPACE</text>
+    <text x="80" y="302" font-family="Inter,Arial,sans-serif" font-size="58" font-weight="800">Interactive 3D</text>
+    <text x="80" y="370" font-family="Inter,Arial,sans-serif" font-size="58" font-weight="800">Solar System</text>
+    <text x="84" y="423" font-family="Inter,Arial,sans-serif" font-size="24" fill="#cbd5e1">Discover the planets, their orbits, and essential facts.</text>
+  </g>
+</svg>

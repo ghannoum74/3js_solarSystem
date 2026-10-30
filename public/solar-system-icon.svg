@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Solar system</title>
+  <defs>
+    <radialGradient id="sun">
+      <stop offset="0" stop-color="#fff7ad"/>
+      <stop offset=".55" stop-color="#ffd34e"/>
+      <stop offset="1" stop-color="#f97316"/>
+    </radialGradient>
+    <linearGradient id="space" x2="1" y2="1">
+      <stop stop-color="#111b3d"/>
+      <stop offset="1" stop-color="#020617"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#space)"/>
+  <circle cx="32" cy="32" r="10" fill="url(#sun)"/>
+  <ellipse cx="32" cy="32" rx="25" ry="11" fill="none" stroke="#94a3b8" stroke-width="2" transform="rotate(-18 32 32)"/>
+  <circle cx="54" cy="24" r="4" fill="#60a5fa"/>
+  <g fill="#fff">
+    <circle cx="13" cy="13" r="1"/>
+    <circle cx="48" cy="10" r=".8"/>
+    <circle cx="15" cy="48" r=".7"/>
+  </g>
+</svg>

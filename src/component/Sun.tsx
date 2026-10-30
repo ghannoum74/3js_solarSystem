@@ -7,9 +7,14 @@ import { Html } from "@react-three/drei";
 // Sun Component
 interface SunProps {
   textureUrl: string;
+  isSelected: boolean;
+  onSelect: (name: string) => void;
 }
 
-const Sun: React.FC<SunProps> = ({ textureUrl }) => {
+const Sun = React.forwardRef<THREE.Mesh, SunProps>(function Sun(
+  { textureUrl, isSelected, onSelect },
+  forwardedRef
+) {
   const sunTexture = useLoader(TextureLoader, textureUrl);
   const sunRef = useRef<THREE.Mesh | null>(null);
 
@@ -33,12 +38,33 @@ const Sun: React.FC<SunProps> = ({ textureUrl }) => {
 
         {/* Outer Glowing Sphere */}
 
-        <mesh ref={sunRef} scale={[1.2, 1.2, 1.2]}>
+        <mesh
+          ref={(mesh) => {
+            sunRef.current = mesh;
+            if (typeof forwardedRef === "function") {
+              forwardedRef(mesh);
+            } else if (forwardedRef) {
+              forwardedRef.current = mesh;
+            }
+          }}
+          scale={[1.2, 1.2, 1.2]}
+          onClick={(event) => {
+            event.stopPropagation();
+            onSelect("Sun");
+          }}
+          onPointerOver={(event) => {
+            event.stopPropagation();
+            document.body.style.cursor = "pointer";
+          }}
+          onPointerOut={() => {
+            document.body.style.cursor = "default";
+          }}
+        >
           <sphereGeometry args={[0.9, 32, 32]} />
           <meshStandardMaterial
             map={sunTexture}
             emissive={new THREE.Color("#FFFF00")}
-            emissiveIntensity={3}
+            emissiveIntensity={isSelected ? 4.5 : 3}
             emissiveMap={sunTexture}
             // side={THREE.DoubleSide}
           />
@@ -48,6 +74,7 @@ const Sun: React.FC<SunProps> = ({ textureUrl }) => {
                 color: "#9e9e9e",
                 fontSize: "10px",
                 textAlign: "center",
+                pointerEvents: "none",
               }}
             >
               Sun
@@ -57,5 +84,5 @@ const Sun: React.FC<SunProps> = ({ textureUrl }) => {
       </group>
     </>
   );
-};
+});
 export default Sun;
